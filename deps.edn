@@ -1,0 +1,3 @@
+{:paths ["src"]
+ :deps  {asset-minifier         {:mvn/version "0.2.7"}
+         coast-framework/helper {:mvn/version "1.0.0"}}}
