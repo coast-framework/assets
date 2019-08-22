@@ -1,4 +1,4 @@
-(ns coast.assets.core
+(ns assets.core
   (:require [asset-minifier.core :refer [minify-js minify-css]]
             [clojure.java.io :as io]
             [clojure.edn :as edn]

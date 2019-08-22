@@ -1,3 +1,8 @@
-{:paths ["src"]
- :deps  {asset-minifier         {:mvn/version "0.2.7"}
-         coast-framework/helper {:mvn/version "1.0.0"}}}
+{:paths   ["src"]
+ :deps    {asset-minifier         {:mvn/version "0.2.7"}
+           coast-framework/helper {:mvn/version "1.0.0"}}
+ :aliases {:repl {:jvm-opts ["-Dclojure.server.repl={:port,5555,:accept,clojure.core.server/repl}"]}
+           :test {:extra-paths ["test"]
+                  :main-opts   ["-m" "cognitect.test-runner"]
+                  :extra-deps  {com.cognitect/test-runner {:git/url "https://github.com/cognitect-labs/test-runner.git"
+                                                           :sha     "5f2b5c2efb444df76fb5252102b33f542ebf7f58"}}}}}
