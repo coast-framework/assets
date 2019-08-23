@@ -9,7 +9,7 @@
 
 (defn md5 [s]
   (let [algorithm (MessageDigest/getInstance "MD5")
-        raw (.digest algorithm (.getBytes s))]
+        raw       (.digest algorithm (.getBytes s))]
     (format "%032x" (BigInteger. 1 raw))))
 
 (defn ext [s]
@@ -30,16 +30,16 @@
   "resources/public/assets")
 
 (defn minify-bundle [bundle v]
-  (let [ext (ext bundle)
-        name (second (re-find #"^(.*)\..*" bundle))
-        tmp (str (helper/uuid) "." ext)
-        _ (condp = ext
-            "css" (minify-css (paths ext v) tmp)
-            "js" (minify-js (paths ext v) tmp)
-            nil)
+  (let [ext      (ext bundle)
+        name     (second (re-find #"^(.*)\..*" bundle))
+        tmp      (str (helper/uuid) "." ext)
+        _        (condp = ext
+                   "css" (minify-css (paths ext v) tmp)
+                   "js"  (minify-js (paths ext v) tmp)
+                   nil)
         checksum (-> tmp slurp md5)
-        _ (copy-file tmp (str (assets-dir) "/" name "-" checksum "." ext))
-        _ (io/delete-file tmp)]
+        _        (copy-file tmp (str (assets-dir) "/" name "-" checksum "." ext))
+        _        (io/delete-file tmp)]
     (str "/assets/" name "-" checksum "." ext)))
 
 (defn build [m]
